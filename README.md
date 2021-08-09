@@ -5,6 +5,13 @@ Automatic solver for Duolingo. (**Description made with google translate**)
 
 Duolingo solver allows you to automatically solve skills from your course.
 
+
+### Methods
+
+- **solve_all()** - solve all unsolved skills;
+- **solve_first()** - solve first unsolved skill and exit;
+
+
 Example:
 ```python
 from solver import DuolingoSolver
@@ -14,6 +21,11 @@ solver = DuolingoSolver(username='rReBoOT',
                         sleep_time=1)
 solver.solve_all()
 ```
+
+- username - User account name
+- token - Individual JWT Token
+- sleep_time - Time between session lessons.
+
 Result:
 ```text
 Solving skill: Еда
@@ -42,3 +54,16 @@ Challenge solution: Бен, ты любишь острую еду?. Sleeping 1 s
 Challenge solution: Do you like Russian food?. Sleeping 1 seconds.
 ...
 ```
+
+## Where to get the token?
+
+- Enter the main page of duolingo.com/learn;
+- Open Browser's DevTools (F12), refresh page (F5);
+- Go to "Network -> Doc", click on "learn" document;
+- Find "jwt_token=" in cookie header.
+
+
+## How to change course languages
+
+By default session payload contains keys **fromLanguage: ru** and **learningLanguage: en**.
+Change them to the required languages.

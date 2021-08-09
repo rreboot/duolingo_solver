@@ -19,6 +19,18 @@ class DuolingoSolver:
     solved_skills: list = []
 
     def __init__(self, token: str, username: str, sleep_time: float = 3):
+        """
+
+        Parameters
+        ----------
+        token : str
+            Individual users JWT Token.
+        username : str
+            User account name.
+        sleep_time : float
+            Time between session lessons.
+
+        """
         self.token = token
         self.username = username
         self.sleep_time = sleep_time
@@ -229,3 +241,10 @@ class DuolingoSolver:
             print(f'Something wrong. Response: {response.text}')
         else:
             print('OK! Solved!')
+
+
+if __name__ == '__main__':
+    solver = DuolingoSolver(username='rReBoOT',
+                            token='some_token',
+                            sleep_time=0.5)
+    solver.solve_first()
