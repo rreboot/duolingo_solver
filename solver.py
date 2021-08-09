@@ -15,10 +15,10 @@ class DuolingoSolver:
     token: str = None
     username: str = None
     user_id: int = None
-    sleep_time: int = None
+    sleep_time: float = None
     solved_skills: list = []
 
-    def __init__(self, token: str, username: str, sleep_time: int = 3):
+    def __init__(self, token: str, username: str, sleep_time: float = 3):
         self.token = token
         self.username = username
         self.sleep_time = sleep_time
@@ -106,7 +106,18 @@ class DuolingoSolver:
 
         print(f'Skill [{skill.name}] - completed.')
 
+    def solve_first(self):
+        """ Solve first unsolved skill.
+
+        """
+        skills = self.get_skills()
+        first_unsolved = skills[0]
+        self.solve_skill(first_unsolved)
+
     def solve_all(self):
+        """ Solve all skills.
+
+        """
         skills = self.get_skills()
 
         for skill in skills:
