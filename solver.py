@@ -92,6 +92,13 @@ class DuolingoSolver:
 
         return skills_list
 
+    def solve_practice(self, num_times=1):
+        for count in range(num_times):
+            session = self._get_session(practice=True)
+            self._solve_session(session)
+
+            print(f'Solved {count + 1} times.')
+
     def solve_skill(self, skill: Skill):
         """ Complete solve one skill.
 
@@ -144,7 +151,8 @@ class DuolingoSolver:
                 exit(0)
 
     def _get_session(
-            self, skill_id: str, finished_levels: int, finished_lessons: int
+            self, skill_id: str = None, finished_levels: int = None,
+            finished_lessons: int = None, practice=False
     ) -> LearningSession:
         """ Get learning session.
 
@@ -153,6 +161,7 @@ class DuolingoSolver:
         skill_id : str
         finished_levels : int
         finished_lessons : int
+        practice : bool
 
         Returns
         -------
@@ -198,6 +207,9 @@ class DuolingoSolver:
                    'skillId': skill_id,
                    'type': 'LESSON',
                    'speakIneligibleReasons': 'permission_disabled'}
+
+        if not (finished_levels and finished_lessons and skill_id) or practice:
+            payload['type'] = 'GLOBAL_PRACTICE'
 
         response = requests.post(url=url, headers=self.headers,
                                  json=payload).json()

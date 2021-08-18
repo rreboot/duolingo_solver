@@ -10,6 +10,7 @@ Duolingo solver allows you to automatically solve skills from your course.
 
 - **solve_all()** - solve all unsolved skills;
 - **solve_first()** - solve first unsolved skill and exit;
+- **solve_practice()** - solve practice (training);
 
 
 Example:
